@@ -1,0 +1,87 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	/* setup navigation, content boxes, etc... */
+	Administry.setup();
+	
+	/* datatable */
+	$('#example').dataTable();
+	
+	/* expandable rows */
+	Administry.expandableRows();
+});
+
+</script>
+	
+	<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">					
+					<h3>User List</h3>
+					
+					<table class="display stylized" id="example">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Uwer Name</th>
+								<th>Real Name</th>
+								<th>Operation</th>
+							</tr>
+						</thead>
+						<tbody>
+						 <?php foreach($userlist as $k => $v): ?>
+							<tr class="gradeX">
+							<td><?php echo $v->u_id;?></td>
+							<td><?php echo $v->username;?></td>
+							<td><?php echo $v->real_name ?></td>
+							<td><a href="<?php echo Yii::app()->createUrl('admin/updateUser', array('id'=>$v->u_id));?>">Edit</a>&nbsp;&nbsp;&nbsp;|
+								&nbsp;&nbsp;&nbsp;<a href="<?php echo Yii::app()->createUrl('admin/delUser', array('id'=>$v->u_id));?>">Del</a></td>
+							</tr>
+						<?php endforeach;?>
+						</tbody>
+					   </table>
+					
+					<div class="clear">&nbsp;</div>
+					
+				</section>
+				<!-- End of Left column/section -->
+				
+				<!-- Right column/section -->
+				<aside class="column width2">
+					<div id="rightmenu">
+						<header>
+							<h3>You might also want to check out...</h3>
+						</header>
+						<dl class="first">
+							<dt><img width="16" height="16" alt="Basic styles" SRC="img/style.png"></dt>
+							<dd><a HREF="styles.html">Basic styles</a></dd>
+							<dd class="last">Basic elements and styles</dd>							
+							
+							<dt><img width="16" height="16" alt="" SRC="img/book.png"></dt>
+							<dd><a HREF="http://www.865171.cn">www.865171.cn</a></dd>
+							<dd class="last">Datatable documentation</dd>							
+						</dl>
+					</div>
+					<div class="content-box">
+						<header>
+							<h3>Tables</h3>
+						</header>
+						<section>
+							Try other alternatives:<br/>
+							<dl>
+								<dt></dt>
+								<dd><a HREF="http://www.865171.cn">www.865171.cn</a></dd>
+							</dl>
+						</section>
+					</div>
+				</aside>
+				<!-- End of Right column/section -->
+				
+		</div>
+		<!-- End of Wrapper -->
+	</div>
+	<!-- End of Page content -->
+	
+
