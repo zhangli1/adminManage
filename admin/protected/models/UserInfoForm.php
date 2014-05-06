@@ -2,7 +2,7 @@
 
 class UserInfoForm extends CFormModel{
 
-	public $user_id;
+	public $u_id;
 	public $username;
 	public $password;
 	public $password_confirm;
@@ -30,11 +30,7 @@ class UserInfoForm extends CFormModel{
 		if($model->save()>0){
 			return true;
 		}
-		$error=$model->getErrors();
-		foreach($error as $k=>$v){
-			$errorContent = $v[0];
-		}
-		Yii::app()->user->setFlash('error', $errorContent);
+		$this->setFirstError($model);
 		return false;	
 	}	
 
@@ -42,9 +38,21 @@ class UserInfoForm extends CFormModel{
 	public function update(){
 		$model=new UserInfoRecord;
 		$model->attributes=$this->getAttributes();
-		UserInfoRecord::model()->updateAll($model->attributes, 'u_id=:u_id', array(':u_id'=>$model->attributes['id']));	
-
+		$model->password=md5($this->password.Yii::app()->name);
+		$model->u_id = (int)($this->u_id);
+		$res=UserInfoRecord::model()->updateAll($model->attributes, 'u_id=:u_id', array(':u_id'=>(int)($this->u_id)));
+		if($res){
+			return true;
+		}
+		return false;	
 	}
 
 
+	public function setFirstError($model){
+		$error=$model->getErrors();
+		foreach($error as $k=>$v){
+			$errorContent = $v[0];
+		}
+		Yii::app()->user->setFlash('error', $errorContent);
+	}
 }

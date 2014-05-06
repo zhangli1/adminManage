@@ -232,8 +232,6 @@ $('#sparkline2').sparkline(_values); */
 							'items'=>array(
 								array('label'=>'user list', 'url'=>array('/admin/userList')),
 								array('label'=>'add user', 'url'=>array('/admin/addUser')),
-								array('label'=>'update user', 'url'=>array('/admin/updateUser')),
-								array('label'=>'del user', 'url'=>array('/admin/delUser')),
 							),
 						),
 					),
