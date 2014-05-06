@@ -71,9 +71,10 @@ $(document).ready(function(){
 		submitHandler: function() {
 			var username = $('#username').val();
 			var password = $('#password').val();
-			var password_confirm = $('#password_confirm').val();
+			var password_confirm = $('#password').val();
 			var real_name = $('#real_name').val();
-			$.post("<?php echo Yii::app()->createUrl('/admin/addUser');?>", {"username":username,"password":password,"password_confirm":password_confirm,"real_name":real_name},function(data) {
+			var u_id = '<?php echo $user->u_id ?>';
+			$.post("<?php echo Yii::app()->createUrl('/admin/update');?>", {"u_id":u_id,"username":username,"password":password,"password_confirm":password_confirm,"real_name":real_name},function(data) {
 				$('.box-info').html(data);
 			});
 	},
@@ -113,7 +114,7 @@ $(document).ready(function(){
 
 							<p>
 								<label class="required" for="username">Username:</label><br/>
-								<input type="text" id="username" class="half" value="" name="username"/>
+								<input type="text" id="username" class="half" readonly value="<?php echo $user->username ?>" name="username"/>
 								<small>e.g. ui.templates</small>
 							</p>
 							
@@ -123,13 +124,8 @@ $(document).ready(function(){
 							</p>
 
 							<p>
-								<label class="required" for="password_confirm">Confirm password:</label><br/>
-								<input type="password" id="password_confirm" class="half" value="" name="password_confirm"/>
-							</p>
-
-							<p>
 								<label class="required" for="real_name">real_name:</label><br/>
-								<input type="text" id="real_name" class="half" value="" name="real_name"/>
+								<input type="text" id="real_name" class="half" value="<?php echo $user->real_name ?>" name="real_name"/>
 							</p>
 							<p>
 								<input type="checkbox" id="terms" class="" value="1" name="terms"/>

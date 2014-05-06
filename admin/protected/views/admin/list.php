@@ -36,14 +36,16 @@ $(document).ready(function(){
                                    'value'=>'$data->real_name',
                                    'type'=>'raw',
 							),
-							
+							array(  'header'=>'操作',
+									'class'=>'CButtonColumn',
+								),
 						),
 						'pager'=> array( 
 							'class'=>'CLinkPager',
 							'header' => '', 
-							'maxButtonCount' => 3,
-							'prevPageLabel' => '上一页',
-							'nextPageLabel' => '下一页',
+							'maxButtonCount' => 0,
+							'prevPageLabel' => '<',
+							'nextPageLabel' => '>',
 							),  
 					));	
 				?>	
